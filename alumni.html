@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUCC - Alumni Dashboard</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #06111f, #0b2e59 48%, #dbeafe);
+            color: #0f172a;
+            padding: 24px;
+        }
+        .shell {
+            width: min(100%, 1120px);
+            margin: 0 auto;
+        }
+        .panel {
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 28px;
+            padding: 36px;
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.2);
+        }
+        .login-panel {
+            max-width: 560px;
+            margin: 72px auto 0;
+            text-align: center;
+        }
+        h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 12px;
+            color: #0f172a;
+        }
+        p {
+            font-size: 1.05rem;
+            color: #475569;
+            margin-bottom: 20px;
+        }
+        .field-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        input {
+            flex: 1 1 260px;
+            padding: 14px 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 14px;
+            font-size: 1rem;
+        }
+        .btn {
+            padding: 14px 22px;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #0056b3, #1d4ed8);
+            color: #ffffff;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn.secondary {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+        .hidden { display: none; }
+        .dashboard {
+            display: grid;
+            gap: 22px;
+        }
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+            background: linear-gradient(135deg, #0b5cab, #1d4ed8);
+            color: #ffffff;
+            border-radius: 24px;
+            padding: 28px;
+        }
+        .hero p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0;
+        }
+        .section-card {
+            background: #ffffff;
+            border: 1px solid #dbe3ee;
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+        }
+        .section-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 14px;
+            color: #0f172a;
+        }
+        .event-grid,
+        .alumni-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+        }
+        .event,
+        .alumni-card {
+            background: #f8fafc;
+            border: 1px solid #dbe3ee;
+            border-radius: 18px;
+            padding: 18px;
+        }
+        .event h3,
+        .alumni-card h3 {
+            margin-bottom: 8px;
+            color: #0f172a;
+            font-size: 1.1rem;
+        }
+        .meta {
+            font-size: 0.95rem;
+            color: #475569;
+            margin-bottom: 6px;
+        }
+        .batch-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        .batch-tab {
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
+            color: #0f172a;
+            padding: 10px 16px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+        .batch-tab.active {
+            background: #0056b3;
+            border-color: #0056b3;
+            color: #ffffff;
+        }
+        .note {
+            margin-top: 16px;
+            font-weight: 700;
+            color: #0056b3;
+            text-align: center;
+        }
+    </style>
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <div class="shell">
+        <div id="login-box" class="panel login-panel">
+            <h1>Alumni Access</h1>
+            <p>Enter the alumni password to see upcoming events and batch-based alumni data.</p>
+            <div class="field-row">
+                <input type="password" id="pass" placeholder="Enter Password" autocomplete="current-password">
+                <button class="btn" id="login-btn" type="button">Join</button>
+            </div>
+            <div style="margin-top: 16px;">
+                <a class="btn secondary" href="login.html">Back to Log In</a>
+            </div>
+        </div>
+
+        <div id="dashboard" class="dashboard hidden">
+            <div class="hero panel" style="padding: 28px;">
+                <div>
+                    <h1 style="color:#ffffff; margin-bottom: 10px;">Alumni Dashboard</h1>
+                    <p>Browse upcoming events and view alumni records by batch.</p>
+                </div>
+                <a class="btn secondary" href="events.html">View Full Events Page</a>
+            </div>
+
+            <div class="section-card">
+                <h2>Upcoming Events</h2>
+                <div class="event-grid" id="event-list"></div>
+            </div>
+
+            <div class="section-card">
+                <h2>Alumni Data by Batch</h2>
+                <div class="batch-tabs" id="batch-tabs"></div>
+                <div class="alumni-grid" id="alumni-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const alumniPassword = "135792468";
+        const events = [
+            { title: "Alumni Meetup 2026", date: "15 August 2026", time: "4:00 PM", venue: "PUCC Auditorium" },
+            { title: "Career Talk with Alumni", date: "29 August 2026", time: "6:00 PM", venue: "Online via Meet" },
+            { title: "Annual Reunion Night", date: "12 September 2026", time: "7:00 PM", venue: "University Hall" }
+        ];
+
+        const alumniByBatch = {
+            "Batch 18": [
+                { name: "Ayesha Rahman", role: "Software Engineer", company: "TechNova" },
+                { name: "Tanvir Hasan", role: "Full Stack Developer", company: "CloudCore" }
+            ],
+            "Batch 19": [
+                { name: "Nusrat Jahan", role: "Data Analyst", company: "Insight Labs" },
+                { name: "Rakib Ahmed", role: "DevOps Engineer", company: "Skyline Systems" }
+            ],
+            "Batch 20": [
+                { name: "Mim Sultana", role: "UI/UX Designer", company: "PixelForge" },
+                { name: "Shuvo Roy", role: "Cybersecurity Analyst", company: "SecureNet" }
+            ]
+        };
+
+        const loginBox = document.getElementById("login-box");
+        const dashboard = document.getElementById("dashboard");
+        const passInput = document.getElementById("pass");
+        const loginButton = document.getElementById("login-btn");
+        const eventList = document.getElementById("event-list");
+        const batchTabs = document.getElementById("batch-tabs");
+        const alumniList = document.getElementById("alumni-list");
+
+        let activeBatch = Object.keys(alumniByBatch)[0];
+
+        function renderEvents() {
+            eventList.innerHTML = events.map((event) => `
+                <div class="event">
+                    <h3>${event.title}</h3>
+                    <div class="meta">Date: ${event.date}</div>
+                    <div class="meta">Time: ${event.time}</div>
+                    <div class="meta">Venue: ${event.venue}</div>
+                </div>
+            `).join("");
+        }
+
+        function renderBatches() {
+            batchTabs.innerHTML = Object.keys(alumniByBatch).map((batch) => `
+                <button class="batch-tab ${batch === activeBatch ? "active" : ""}" type="button" data-batch="${batch}">${batch}</button>
+            `).join("");
+        }
+
+        function renderAlumni() {
+            const alumni = alumniByBatch[activeBatch] || [];
+            alumniList.innerHTML = alumni.map((person) => `
+                <div class="alumni-card">
+                    <h3>${person.name}</h3>
+                    <div class="meta">Batch: ${activeBatch}</div>
+                    <div class="meta">Role: ${person.role}</div>
+                    <div class="meta">Company: ${person.company}</div>
+                </div>
+            `).join("");
+        }
+
+        function openDashboard() {
+            loginBox.classList.add("hidden");
+            dashboard.classList.remove("hidden");
+            renderEvents();
+            renderBatches();
+            renderAlumni();
+        }
+
+        loginButton.addEventListener("click", () => {
+            if (passInput.value === alumniPassword) {
+                openDashboard();
+                return;
+            }
+
+            alert("Wrong Password!");
+        });
+
+        passInput.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                loginButton.click();
+            }
+        });
+
+        batchTabs.addEventListener("click", (event) => {
+            const button = event.target.closest("button[data-batch]");
+            if (!button) {
+                return;
+            }
+
+            activeBatch = button.dataset.batch;
+            renderBatches();
+            renderAlumni();
+        });
+    </script>
+</body>
+</html>

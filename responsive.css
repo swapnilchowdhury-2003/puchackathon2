@@ -1,0 +1,194 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img, video, svg {
+    max-width: 100%;
+    height: auto;
+}
+
+table {
+    width: 100%;
+    max-width: 100%;
+}
+
+input, select, textarea, button {
+    font: inherit;
+}
+
+@media (max-width: 1024px) {
+    header {
+        gap: 16px;
+        padding: 18px 4%;
+    }
+
+    nav ul {
+        gap: 18px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    section {
+        padding: 72px 6%;
+    }
+
+    main {
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+
+    .wings-container,
+    .cards,
+    .event-grid,
+    .alumni-grid,
+    .form-grid,
+    .options {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll !important;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .logo-left,
+    .logo-right {
+        height: 56px;
+    }
+
+    nav ul {
+        gap: 12px;
+        row-gap: 10px;
+    }
+
+    nav a {
+        font-size: 1rem;
+        padding-bottom: 3px;
+    }
+
+    section {
+        padding: 56px 5%;
+        min-height: auto;
+    }
+
+    #hero {
+        min-height: 72vh;
+    }
+
+    #hero h1,
+    .section-header h1,
+    h1 {
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+
+    #hero .club-motto,
+    .club-motto {
+        font-size: clamp(1.1rem, 4vw, 1.6rem);
+    }
+
+    h2 {
+        font-size: clamp(1.5rem, 5vw, 2.2rem);
+    }
+
+    p {
+        max-width: 100%;
+        font-size: 1rem;
+    }
+
+    .btn,
+    .btn-card,
+    .option,
+    .batch-tab,
+    .btn-primary,
+    .btn-success,
+    .btn-danger,
+    button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .snapshot-slider,
+    .join-form,
+    .container,
+    .panel,
+    .card,
+    .section-card,
+    .wing-card {
+        width: 100%;
+    }
+
+    .join-form,
+    .container,
+    .panel,
+    .section-card,
+    .card,
+    .wing-card {
+        padding: 20px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .topbar,
+    .hero,
+    .field-row,
+    .form-actions,
+    .card-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .batch-tabs {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 14px 4%;
+    }
+
+    nav ul {
+        gap: 8px;
+    }
+
+    nav a {
+        font-size: 0.92rem;
+    }
+
+    section {
+        padding: 44px 4%;
+    }
+
+    .snapshot-slider {
+        border-radius: 16px;
+    }
+
+    .btn,
+    .btn-card,
+    .option {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    input,
+    select,
+    textarea {
+        min-width: 0;
+    }
+}

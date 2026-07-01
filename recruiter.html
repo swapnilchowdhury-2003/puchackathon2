@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruiter Dashboard - PUCC</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { min-height: 100vh; background: linear-gradient(135deg, #050505, #111827 55%, #1d4ed8); color: #ffffff; padding: 32px; }
+        .shell { width: min(100%, 1100px); margin: 0 auto; }
+        .panel { background: rgba(17, 24, 39, 0.92); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px; padding: 28px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35); }
+        .login-box { max-width: 520px; margin: 80px auto 0; text-align: center; }
+        input { width: 100%; padding: 14px; margin: 10px 0; border-radius: 12px; border: 1px solid #334155; background: #0f172a; color: white; }
+        .btn { padding: 12px 24px; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; color: white; margin: 5px; }
+        .btn-primary { background: #0056b3; }
+        .btn-success { background: #15803d; }
+        .btn-danger { background: #b91c1c; }
+        .hidden { display: none; }
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 20px; }
+        .card { background: #0b1220; border: 1px solid #243244; padding: 20px; border-radius: 18px; }
+    </style>
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <div class="shell">
+        <div id="login-box" class="panel login-box">
+            <h1>Recruiter Access</h1>
+            <p>Enter password (13579) to view applications.</p>
+            <input type="password" id="pass" placeholder="Enter Password">
+            <button class="btn btn-primary" id="login-btn">Login</button>
+        </div>
+
+        <div id="dashboard" class="panel hidden">
+            <h1>Student Applications</h1>
+            <div id="app-list" class="cards"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getFirestore, collection, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAFJrWOuS9hOtAU0aF7rLjzofvyf8UvGLo",
+            authDomain: "pucfest.firebaseapp.com",
+            projectId: "pucfest",
+            storageBucket: "pucfest.firebasestorage.app",
+            messagingSenderId: "970955439517",
+            appId: "1:970955439517:web:e84af41fb4085465834374",
+            measurementId: "G-EFBN78R111"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const participantsCollection = "participants";
+
+        async function readAllData(collectionName) {
+            const querySnapshot = await getDocs(collection(db, collectionName));
+            const dataList = [];
+
+            querySnapshot.forEach((documentSnapshot) => {
+                dataList.push({ id: documentSnapshot.id, ...documentSnapshot.data() });
+            });
+
+            return dataList;
+        }
+
+        async function updateData(collectionName, docId, updatedFields) {
+            const docRef = doc(db, collectionName, docId);
+            await updateDoc(docRef, updatedFields);
+        }
+
+        async function loadApplications() {
+            const list = document.getElementById("app-list");
+            list.innerHTML = "";
+
+            try {
+                const applications = await readAllData(participantsCollection);
+
+                if (!applications.length) {
+                    list.innerHTML = "<div class='card'>No applications yet.</div>";
+                    return;
+                }
+
+                applications.forEach((app) => {
+                    list.innerHTML += `<div class="card">
+                        <h3>${app.name}</h3>
+                        <p>ID: ${app.studentId || app.id} | Wing: ${app.wing}</p>
+                        <p>Status: <b>${app.reviewStatus || 'Pending'}</b></p>
+                        <button class="btn btn-success" onclick="updateStatus('${app.id}', 'Accepted')">Accept</button>
+                        <button class="btn btn-danger" onclick="updateStatus('${app.id}', 'Declined')">Decline</button>
+                    </div>`;
+                });
+            } catch (error) {
+                list.innerHTML = `<div class="card">Error loading applications: ${error.message}</div>`;
+            }
+        }
+
+        window.checkPass = () => {
+            if (document.getElementById("pass").value === "13579") {
+                document.getElementById("login-box").classList.add("hidden");
+                document.getElementById("dashboard").classList.remove("hidden");
+                loadApplications();
+            } else {
+                alert("Wrong Password!");
+            }
+        };
+
+        window.updateStatus = async (docId, status) => {
+            try {
+                await updateData(participantsCollection, docId, { reviewStatus: status });
+                await loadApplications();
+            } catch (error) {
+                alert("Error updating status: " + error.message);
+            }
+        };
+
+        document.getElementById("login-btn").addEventListener("click", window.checkPass);
+        document.getElementById("pass").addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                window.checkPass();
+            }
+        });
+    </script>
+</body>
+</html>

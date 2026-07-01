@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wings - Premier University Computer Club</title>
+    <style>
+        /* CSS Reset & Smooth Scroll */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* --- SUPER DARK THEME BACKGROUND --- */
+        body {
+            background-color: #050505; /* Very dark background */
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        /* --- HEADER & NAVBAR (Same as before) --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 5%;
+            background-color: #ffffff; /* Kept white for brand consistency as requested */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo-left, .logo-right {
+            height: 75px;
+            object-fit: contain;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #222;
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+            padding-bottom: 5px;
+            border-bottom: 3px solid transparent;
+        }
+        nav a:hover, nav a.active {
+            color: #0056b3;
+            border-bottom: 3px solid #0056b3;
+        }
+
+        /* --- WINGS SECTION STYLING --- */
+        main {
+            padding: 80px 5%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-header h1 {
+            font-size: 3rem;
+            color: #ffffff;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+        .section-header p {
+            font-size: 1.2rem;
+            color: #888888;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- REUSABLE CARD SYSTEM --- */
+        .wings-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            width: 100%;
+            max-width: 1200px;
+        }
+        
+        .wing-card {
+            background-color: #111111; /* Dark card */
+            border: 1px solid #222222;
+            border-radius: 12px;
+            padding: 35px 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Subtle glow effect on hover */
+        .wing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 86, 179, 0.15);
+            border-color: #0056b3;
+        }
+
+        /* Accent top border for cards */
+        .wing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #0056b3, #4da8da);
+        }
+
+        .wing-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .wing-title {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .wing-mission {
+            font-size: 1rem;
+            font-style: italic;
+            color: #4da8da; /* Highlighted to show verbatim accuracy */
+            margin-bottom: 20px;
+            border-left: 2px solid #4da8da;
+            padding-left: 10px;
+        }
+
+        .wing-details h4 {
+            font-size: 1.05rem;
+            color: #ffffff;
+            margin-bottom: 8px;
+            margin-top: 15px;
+        }
+        .wing-details p, .wing-details ul {
+            font-size: 0.95rem;
+            color: #aaaaaa;
+            margin-bottom: 10px;
+        }
+        .wing-details ul {
+            padding-left: 20px;
+        }
+
+        /* Spacer to push CTA button to bottom */
+        .spacer {
+            flex-grow: 1;
+        }
+
+        /* --- CTA BUTTON --- */
+        .btn-card {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            padding: 12px 0;
+            background-color: transparent;
+            color: #4da8da;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            border: 2px solid #4da8da;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        .btn-card:hover {
+            background-color: #4da8da;
+            color: #050505;
+        }
+
+        /* Upcoming Badge */
+        .badge-upcoming {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #ff9800;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px;
+            background-color: #000000;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-top: 1px solid #222;
+        }
+    </style>
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+
+    <!-- HEADER (Active link changed to Wings) -->
+    <header>
+        <img src="puclogo.png" alt="PUC Logo" class="logo-left">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="wings.html" class="active">Wings</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="join.html">Join Us</a></li>
+                <li><a href="achievements.html">Achievements</a></li>
+            </ul>
+        </nav>
+        <img src="pucclublogo.png" alt="PUCC Logo" class="logo-right">
+    </header>
+
+    <main>
+        <div class="section-header">
+            <h1>Specialized Wings</h1>
+            <p>Explore the diverse technical domains of PUCC and find where you belong.</p>
+        </div>
+
+        <div class="wings-container">
+            
+            <!-- Wing 1: Competitive Programming -->
+            <div class="wing-card">
+                <div class="wing-icon">💻</div>
+                <h2 class="wing-title">Competitive Programming</h2>
+                <div class="wing-mission">
+                    "Nurture problem-solving and prepare members for national & international contests."
+                </div>
+                <div class="wing-details">
+                    <h4>What you gain:</h4>
+                    <p>Master advanced algorithms, data structures, and rapid logical thinking.</p>
+                    <h4>Key Activities:</h4>
+                    <ul>
+                        <li>Weekly Codeforces contests</li>
+                        <li>ICPC and NCPC bootcamps</li>
+                        <li>Algorithmic problem-solving sessions</li>
+                    </ul>
+                </div>
+                <div class="spacer"></div>
+                <a href="join.html" class="btn-card">Join</a>
+            </div>
+
+            <!-- Wing 2: Software Engineering -->
+            <div class="wing-card">
+                <div class="wing-icon">🚀</div>
+                <h2 class="wing-title">Software Engineering</h2>
+                <div class="wing-mission">
+                    "Equip members to design, develop, deploy modern, user-centric software to industry standards."
+                </div>
+                <div class="wing-details">
+                    <h4>What you gain:</h4>
+                    <p>Full-stack development skills, system architecture, and UI/UX design principles.</p>
+                    <h4>Key Activities:</h4>
+                    <ul>
+                        <li>Hackathons & UI/UX challenges</li>
+                        <li>Web and Mobile App projects</li>
+                        <li>Industry-standard coding practices</li>
+                    </ul>
+                </div>
+                <div class="spacer"></div>
+                <a href="join.html" class="btn-card">Join</a>
+            </div>
+
+            <!-- Wing 3: Linux-Based Networking -->
+            <div class="wing-card">
+                <div class="wing-icon">🐧</div>
+                <h2 class="wing-title">Linux-Based Networking</h2>
+                <div class="wing-mission">
+                    "Build foundations in Linux, networking, and security for IT-infrastructure innovation."
+                </div>
+                <div class="wing-details">
+                    <h4>What you gain:</h4>
+                    <p>Hands-on experience with server administration, OS deployment, and cybersecurity.</p>
+                    <h4>Key Activities:</h4>
+                    <ul>
+                        <li>Linux Install Fests</li>
+                        <li>CTF (Capture The Flag) competitions</li>
+                        <li>Server configuration labs</li>
+                    </ul>
+                </div>
+                <div class="spacer"></div>
+                <a href="join.html" class="btn-card">Join</a>
+            </div>
+
+            <!-- Wing 4: Deep Neural Research -->
+            <div class="wing-card">
+                <div class="wing-icon">🧠</div>
+                <h2 class="wing-title">Deep Neural Research</h2>
+                <div class="wing-mission">
+                    "Advance AI, ML, and deep learning through cutting-edge models and real-world use."
+                </div>
+                <div class="wing-details">
+                    <h4>What you gain:</h4>
+                    <p>Practical expertise in training AI models and understanding neural networks.</p>
+                    <h4>Key Activities:</h4>
+                    <ul>
+                        <li>TensorFlow & PyTorch workshops</li>
+                        <li>Research paper reading sessions</li>
+                        <li>Predictive modeling projects</li>
+                    </ul>
+                </div>
+                <div class="spacer"></div>
+                <a href="join.html" class="btn-card">Join</a>
+            </div>
+
+            <!-- Wing 5: Research & Development -->
+            <div class="wing-card">
+                <div class="wing-icon">🔬</div>
+                <h2 class="wing-title">Research & Development</h2>
+                <div class="wing-mission">
+                    "Cultivate innovation and inquiry to solve real-world challenges with emerging tech."
+                </div>
+                <div class="wing-details">
+                    <h4>What you gain:</h4>
+                    <p>Strong academic writing skills and experience in systematic innovation.</p>
+                    <h4>Key Activities:</h4>
+                    <ul>
+                        <li>Thesis and publication mentoring</li>
+                        <li>Project showcases</li>
+                        <li>Tech seminars and conferences</li>
+                    </ul>
+                </div>
+                <div class="spacer"></div>
+                <a href="join.html" class="btn-card">Join</a>
+            </div>
+
+            <!-- Wing 6: Career Guidance -->
+            <div class="wing-card">
+                <div class="wing-icon">🎯</div>
+                <h2 class="wing-title">Career Guidance</h2>
+                <div class="wing-mission">
+                    "Empower members for higher studies and careers, bridging students and industry."
+                </div>
+                <div class="wing-details">
+                    <h4>What you gain:</h4>
+                    <p>Professional networking, interview readiness, and polished resumes.</p>
+                    <h4>Key Activities:</h4>
+                    <ul>
+                        <li>Mock interviews</li>
+                        <li>CV review sessions</li>
+                        <li>Alumni networking events</li>
+                    </ul>
+                </div>
+                <div class="spacer"></div>
+                <a href="join.html" class="btn-card">Join</a>
+            </div>
+
+            <!-- Wing 7: IoT (Upcoming) -->
+            <div class="wing-card">
+                <span class="badge-upcoming">Upcoming</span>
+                <div class="wing-icon">🌐</div>
+                <h2 class="wing-title">IoT Ecosystem</h2>
+                <div class="wing-mission">
+                    "Explore the Internet of Things ecosystem, connecting devices, data, and real-world systems through hands-on innovation."
+                </div>
+                <div class="wing-details">
+                    <h4>What you gain:</h4>
+                    <p>Knowledge of embedded systems, hardware integration, and sensor networks.</p>
+                    <h4>Key Activities:</h4>
+                    <ul>
+                        <li>Arduino & Raspberry Pi labs</li>
+                        <li>Hardware hackathons</li>
+                    </ul>
+                </div>
+                <div class="spacer"></div>
+                <a href="iot.html" class="btn-card">Notify Me</a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>made by Levi squad</p>
+    </footer>
+
+</body>
+</html>

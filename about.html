@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About PUCC - Premier University Computer Club</title>
+    <style>
+        /* CSS Reset & Smooth Scroll */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #f4f6f9; /* Base background */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* --- SAME HEADER & NAVBAR --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 5%;
+            background-color: #ffffff;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo-left, .logo-right {
+            height: 75px;
+            object-fit: contain;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #222;
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+            padding-bottom: 5px;
+            border-bottom: 3px solid transparent;
+        }
+        nav a:hover, nav a.active {
+            color: #0056b3;
+            border-bottom: 3px solid #0056b3;
+        }
+
+        /* --- DARK THEME MAIN CONTENT --- */
+        main {
+            background-color: #121212; /* Dark Theme Background */
+            color: #e0e0e0; /* Light Text for readability */
+        }
+        
+        section {
+            padding: 80px 10%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .bg-dark-1 { background-color: #121212; }
+        .bg-dark-2 { background-color: #1e1e1e; }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: #ffffff;
+            font-weight: 800;
+        }
+        h3 {
+            color: #4da8da;
+            margin-bottom: 10px;
+        }
+        p.prose-text {
+            font-size: 1.1rem;
+            max-width: 900px;
+            margin: 0 auto 20px auto;
+            text-align: justify;
+            color: #cccccc;
+        }
+
+        /* --- VISUAL TIMELINE --- */
+        .timeline-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+            width: 100%;
+        }
+        .timeline-card {
+            background: #2a2a2a;
+            border-radius: 10px;
+            padding: 20px;
+            width: 250px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            transition: transform 0.3s;
+        }
+        .timeline-card:hover {
+            transform: translateY(-5px);
+        }
+        .timeline-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 2px solid #4da8da;
+        }
+
+        /* --- 6 WINGS SUMMARY GRID --- */
+        .wings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1100px;
+            margin-top: 30px;
+        }
+        .wing-summary-card {
+            background-color: #252525;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #0056b3;
+            text-align: left;
+        }
+        .wing-summary-card h4 {
+            font-size: 1.2rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        .wing-summary-card p {
+            font-size: 0.95rem;
+            color: #b3b3b3;
+        }
+
+        /* --- CTA BUTTON (Same as Index) --- */
+        .btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 35px;
+            background-color: #0056b3;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            transition: transform 0.3s, background-color 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 86, 179, 0.3);
+        }
+        .btn:hover {
+            background-color: #004494;
+            transform: translateY(-3px);
+        }
+
+        /* --- SAME FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+    </style>
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+
+    <header>
+        <img src="puclogo.png" alt="PUC Logo" class="logo-left">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="wings.html">Wings</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="join.html">Join Us</a></li>
+                <li><a href="achievements.html">Achievements</a></li>
+            </ul>
+        </nav>
+        <img src="pucclublogo.png" alt="PUCC Logo" class="logo-right">
+    </header>
+
+    <main>
+        <section id="founding-story" class="bg-dark-1">
+            <h2>Our History & Vision</h2>
+            <p class="prose-text">
+                The Premier University Computer Club (PUCC) is one of the most active and prestigious student organizations at Premier University, established in 2015 under the Department of Computer Science and Engineering (CSE). Officially approved by the Honorable Vice-Chancellor in 2020, the club continues to play a vital role in nurturing technical talent across the university.
+            </p>
+            <p class="prose-text">
+                PUCC currently operates with over 350–360 active members each semester, and has proudly connected more than 1,500 students throughout its history. We are structured into six specialized wings, each focused on developing essential skills and fostering innovation.
+            </p>
+            <p class="prose-text">
+                Our mission is to create a collaborative learning environment where students can explore technology, solve real-world problems, and prepare for both academic and professional success. We conduct regular bootcamps, workshops, seminars, and competitions—open to students from all disciplines, including those outside the CSE department. PUCC stands as a bridge between classroom learning and practical experience, committed to empowering the next generation of tech leaders.
+            </p>
+        </section>
+
+        <section id="visual-timeline" class="bg-dark-2">
+            <h2>Visual Timeline</h2>
+            <div class="timeline-container">
+                <div class="timeline-card">
+                    <img src="2015pic.png" alt="2015 - Inception">
+                    <h3>2015</h3>
+                    <p>Established under the Department of CSE.</p>
+                </div>
+                <div class="timeline-card">
+                    <img src="2020pic.png" alt="2020 - Approval">
+                    <h3>2020</h3>
+                    <p>Officially approved by the Vice-Chancellor.</p>
+                </div>
+                <div class="timeline-card">
+                    <img src="2025pic.png" alt="2025 - 6 Wings">
+                    <h3>2025</h3>
+                    <p>Expanded to 6 specialized wings to foster innovation.</p>
+                </div>
+                <div class="timeline-card">
+                    <img src="2026pic.png" alt="2026 - Present">
+                    <h3>Present</h3>
+                    <p>Continuing the legacy of tech excellence.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="wings-summary" class="bg-dark-1">
+            <h2>Our 6 Specialized Wings</h2>
+            <div class="wings-grid">
+                <div class="wing-summary-card">
+                    <h4>Competitive Programming</h4>
+                    <p>Nurturing problem-solving skills for national & international contests.</p>
+                </div>
+                <div class="wing-summary-card">
+                    <h4>Software Engineering</h4>
+                    <p>Designing and developing modern, user-centric software.</p>
+                </div>
+                <div class="wing-summary-card">
+                    <h4>Linux-Based Networking</h4>
+                    <p>Building foundations in open-source systems and security.</p>
+                </div>
+                <div class="wing-summary-card">
+                    <h4>Deep Neural Research</h4>
+                    <p>Advancing AI, ML, and deep learning models.</p>
+                </div>
+                <div class="wing-summary-card">
+                    <h4>Research and Development</h4>
+                    <p>Cultivating innovation to solve real-world challenges.</p>
+                </div>
+                <div class="wing-summary-card">
+                    <h4>Career Guidance</h4>
+                    <p>Empowering members for higher studies and the tech industry.</p>
+                </div>
+            </div>
+            
+            <a href="wings.html" class="btn">Explore Wings in Detail</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>made by Levi squad</p>
+    </footer>
+
+</body>
+</html>

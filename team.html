@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team - Premier University Computer Club</title>
+    <style>
+        /* CSS Reset & Smooth Scroll */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* --- SUPER DARK THEME BACKGROUND --- */
+        body {
+            background-color: #050505;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        /* --- HEADER & NAVBAR (Consistent with all pages) --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 5%;
+            background-color: #ffffff;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo-left, .logo-right {
+            height: 75px;
+            object-fit: contain;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #222;
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+            padding-bottom: 5px;
+            border-bottom: 3px solid transparent;
+        }
+        nav a:hover, nav a.active {
+            color: #0056b3;
+            border-bottom: 3px solid #0056b3;
+        }
+
+        /* --- TEAM SECTION STYLING --- */
+        main {
+            padding: 80px 5%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-header h1 {
+            font-size: 3rem;
+            color: #ffffff;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+        .section-header p {
+            font-size: 1.2rem;
+            color: #888888;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Group Titles (Advisory vs EC) */
+        .group-title {
+            width: 100%;
+            max-width: 1200px;
+            text-align: center;
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 40px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #222;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        /* Highlight specific title color for hierarchy */
+        .title-advisory { color: #f39c12; border-bottom-color: #f39c12; }
+        .title-ec { color: #4da8da; border-bottom-color: #4da8da; margin-top: 80px; }
+
+        /* --- TEAM GRIDS & CARDS --- */
+        .team-grid {
+            display: grid;
+            gap: 40px;
+            width: 100%;
+            max-width: 1200px;
+            justify-content: center;
+        }
+        
+        /* Advisory grid - slightly larger cards, centered */
+        .grid-advisory {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 350px));
+        }
+        
+        /* EC grid - smaller cards for regular members */
+        .grid-ec {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .team-card {
+            background-color: #111111;
+            border: 1px solid #222222;
+            border-radius: 15px;
+            padding: 40px 20px;
+            text-align: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-8px);
+        }
+
+        /* Hover Glow based on Hierarchy */
+        .card-advisory:hover { box-shadow: 0 10px 30px rgba(243, 156, 18, 0.15); border-color: #f39c12; }
+        .card-ec:hover { box-shadow: 0 10px 30px rgba(77, 168, 218, 0.15); border-color: #4da8da; }
+
+        .team-img {
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px auto;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        
+        /* Hierarchy sizing */
+        .card-advisory .team-img {
+            width: 160px;
+            height: 160px;
+            border: 4px solid #f39c12;
+        }
+        .card-ec .team-img {
+            width: 130px;
+            height: 130px;
+            border: 3px solid #4da8da;
+        }
+
+        .team-name {
+            font-size: 1.4rem;
+            color: #ffffff;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        
+        .team-role {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .role-advisory { color: #f39c12; }
+        .role-ec { color: #4da8da; }
+
+        .team-wing {
+            font-size: 0.9rem;
+            color: #888888;
+            font-style: italic;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px;
+            background-color: #000000;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-top: 1px solid #222;
+        }
+    </style>
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+
+    <!-- HEADER (Active link changed to Team) -->
+    <header>
+        <img src="puclogo.png" alt="PUC Logo" class="logo-left">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="wings.html">Wings</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="team.html" class="active">Team</a></li>
+                <li><a href="join.html">Join Us</a></li>
+                <li><a href="achievements.html">Achievements</a></li>
+            </ul>
+        </nav>
+        <img src="pucclublogo.png" alt="PUCC Logo" class="logo-right">
+    </header>
+
+    <main>
+        <div class="section-header">
+            <h1>Meet The Team</h1>
+            <p>The visionaries, leaders, and hard-working individuals guiding the Premier University Computer Club to new heights.</p>
+        </div>
+
+        <!-- ==========================================
+             SECTION 1: ADVISORY BOARD (TOP HIERARCHY) 
+             ========================================== -->
+        <h2 class="group-title title-advisory">Advisory Board</h2>
+        <div class="team-grid grid-advisory">
+            
+            <!-- Advisor 1 -->
+            <div class="team-card card-advisory">
+                <img src="advisor-1.jpg" alt="Chief Advisor" class="team-img">
+                <h3 class="team-name">Dr. A.K.M Fazlul Hoque</h3>
+                <div class="team-role role-advisory">Chief Advisor</div>
+                <div class="team-wing">Professor, Dept. of CSE</div>
+            </div>
+
+            <!-- Advisor 2 -->
+            <div class="team-card card-advisory">
+                <img src="advisor-2.jpg" alt="Faculty Sponsor" class="team-img">
+                <h3 class="team-name">Tasnim Rahaman</h3>
+                <div class="team-role role-advisory">Faculty Sponsor</div>
+                <div class="team-wing">Assistant Professor, Dept. of CSE</div>
+            </div>
+
+        </div>
+
+        <!-- ==========================================
+             SECTION 2: EXECUTIVE COMMITTEE (BELOW ADVISORY) 
+             ========================================== -->
+        <h2 class="group-title title-ec">Executive Committee</h2>
+        <div class="team-grid grid-ec">
+            
+            <!-- EC 1: President -->
+            <div class="team-card card-ec">
+                <img src="ec-president.jpg" alt="President" class="team-img">
+                <h3 class="team-name">Mohammad Sadek</h3>
+                <div class="team-role role-ec">President</div>
+                <div class="team-wing">Core Management</div>
+            </div>
+
+            <!-- EC 2: General Secretary -->
+            <div class="team-card card-ec">
+                <img src="ec-secretary.jpg" alt="General Secretary" class="team-img">
+                <h3 class="team-name">Rahim Uddin</h3>
+                <div class="team-role role-ec">General Secretary</div>
+                <div class="team-wing">Core Management</div>
+            </div>
+
+            <!-- EC 3: Wing Head -->
+            <div class="team-card card-ec">
+                <img src="ec-wing-head.jpg" alt="Wing Head" class="team-img">
+                <h3 class="team-name">Anik Hasan</h3>
+                <div class="team-role role-ec">Head of Software Eng.</div>
+                <div class="team-wing">Software Engineering Wing</div>
+            </div>
+
+            <!-- EC 4: Wing Head -->
+            <div class="team-card card-ec">
+                <img src="ec-wing-head.jpg" alt="Wing Head" class="team-img">
+                <h3 class="team-name">Sumaiya Islam</h3>
+                <div class="team-role role-ec">Head of CP</div>
+                <div class="team-wing">Competitive Programming Wing</div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>made by Levi squad</p>
+    </footer>
+
+</body>
+</html>

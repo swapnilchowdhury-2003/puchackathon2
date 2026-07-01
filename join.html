@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Us - PUCC</title>
+    <style>
+        /* Dark Theme Global Styles */
+        body { background-color: #050505; color: #e0e0e0; font-family: sans-serif; margin: 0; }
+        
+        /* Consistent Header/Footer from previous pages */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background-color: #ffffff; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5); position: sticky; top: 0; z-index: 1000; }
+        .logo-left, .logo-right { height: 75px; object-fit: contain; }
+        nav ul { list-style: none; display: flex; gap: 40px; }
+        nav a { text-decoration: none; color: #222; font-weight: 700; font-size: 1.15rem; text-transform: uppercase; }
+        nav a.active { color: #0056b3; border-bottom: 3px solid #0056b3; }
+        
+        /* Container and Form Styles */
+        .container { max-width: 800px; margin: 50px auto; padding: 40px; background: #111; border-radius: 12px; border: 1px solid #222; }
+        input, select { width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; border: 1px solid #333; background: #222; color: #fff; box-sizing: border-box; }
+        .btn { background: #0056b3; color: white; padding: 15px 30px; border: none; cursor: pointer; border-radius: 5px; width: 100%; font-size: 1.1rem; margin-top: 20px; }
+
+            .join-form {
+                width: min(100%, 920px);
+                background: #ffffff;
+                border-radius: 24px;
+                padding: 36px;
+                box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+                text-align: left;
+            }
+            .join-form h3 {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+                color: #0f172a;
+            }
+            .form-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: 18px;
+            }
+            .field {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+            .field label {
+                font-weight: 700;
+                color: #334155;
+            }
+            .field input,
+            .field select,
+            .field textarea {
+                width: 100%;
+                padding: 14px 16px;
+                border: 1px solid #cbd5e1;
+                border-radius: 12px;
+                font-size: 1rem;
+                background: #ffffff;
+            }
+            .field textarea {
+                min-height: 120px;
+                resize: vertical;
+            }
+            .form-actions {
+                margin-top: 20px;
+                display: flex;
+                gap: 14px;
+                flex-wrap: wrap;
+                align-items: center;
+            }
+            .status-message {
+                margin-top: 16px;
+                font-weight: 700;
+                color: #0056b3;
+            }
+        
+        /* 2-Step Process and Fee Table */
+        .step-container { display: flex; justify-content: space-around; margin-bottom: 40px; color: #4da8da; }
+        table { width: 100%; margin: 20px 0; border-collapse: collapse; color: #fff; }
+        th, td { padding: 12px; border: 1px solid #333; text-align: center; }
+        
+        footer { text-align: center; padding: 40px; background: #000; color: #fff; font-weight: bold; text-transform: uppercase; border-top: 1px solid #222; }
+    </style>
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+
+    <header>
+        <img src="puclogo.png" alt="PUC Logo" class="logo-left">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="wings.html">Wings</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="join.html" class="active">Join Us</a></li>
+                <li><a href="achievements.html">Achievements</a></li>
+            </ul>
+        </nav>
+        <img src="pucclublogo.png" alt="PUCC Logo" class="logo-right">
+    </header>
+
+    <div class="container">
+        <h1>Join PUCC</h1>
+        
+        <div class="step-container">
+            <div>Step 1: Fill Form</div>
+            <div>Step 2: Pay Fee</div>
+        </div>
+
+        <table>
+            <tr><th>Status</th><th>Fee</th></tr>
+            <tr><td>PUCC Member</td><td>BDT 350</td></tr>
+            <tr><td>Non-Member</td><td>BDT 450</td></tr>
+        </table>
+
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="text" id="id" placeholder="Student ID" required>
+        <input type="text" id="section" placeholder="Section" required>
+        <input type="text" id="batch" placeholder="Batch" required>
+        <input type="text" id="semester" placeholder="Semester" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="tel" id="phone" placeholder="Phone Number" required>
+        
+        <select id="wing">
+            <option>Competitive Programming</option>
+            <option>Software Engineering</option>
+            <option>Linux-Based Networking</option>
+            <option>Deep Neural Research</option>
+            <option>Research & Development</option>
+            <option>Career Guidance</option>
+        </select>
+        
+        <select id="status">
+            <option value="member">PUCC Member (BDT 350)</option>
+            <option value="non-member">Non-Member (BDT 450)</option>
+        </select>
+        
+        <button class="btn" onclick="submitForm()">Submit Application</button>
+    </div>
+
+    <footer>
+        <p>made by Levi squad</p>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAFJrWOuS9hOtAU0aF7rLjzofvyf8UvGLo",
+            authDomain: "pucfest.firebaseapp.com",
+            projectId: "pucfest",
+            storageBucket: "pucfest.firebasestorage.app",
+            messagingSenderId: "970955439517",
+            appId: "1:970955439517:web:e84af41fb4085465834374",
+            measurementId: "G-EFBN78R111"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        async function createData(collectionName, dataObject) {
+            const docRef = await addDoc(collection(db, collectionName), {
+                ...dataObject,
+                createdAt: serverTimestamp()
+            });
+
+            return docRef.id;
+        }
+
+        window.submitForm = async function() {
+            const application = {
+                name: document.getElementById("name").value.trim(),
+                studentId: document.getElementById("id").value.trim(),
+                section: document.getElementById("section").value.trim(),
+                batch: document.getElementById("batch").value.trim(),
+                semester: document.getElementById("semester").value.trim(),
+                email: document.getElementById("email").value.trim(),
+                phone: document.getElementById("phone").value.trim(),
+                wing: document.getElementById("wing").value,
+                membershipType: document.getElementById("status").value,
+                reviewStatus: "Pending"
+            };
+
+            try {
+                await createData("participants", application);
+                alert("Application Submitted Successfully!");
+            } catch (error) {
+                alert("Error saving application: " + error.message);
+            }
+        };
+    </script>
+</body>
+</html>

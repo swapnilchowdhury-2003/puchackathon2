@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievements - Premier University Computer Club</title>
+    <meta name="description" content="Explore the remarkable achievements of PUCC – from ICPC qualifications and NASA Space Apps Championships to national hackathons and cybersecurity victories.">
+    <style>
+        /* CSS Reset & Smooth Scroll */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* --- SAME HEADER & NAVBAR --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 5%;
+            background-color: #ffffff;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo-left, .logo-right {
+            height: 75px;
+            object-fit: contain;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #222;
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+            padding-bottom: 5px;
+            border-bottom: 3px solid transparent;
+        }
+        nav a:hover, nav a.active {
+            color: #0056b3;
+            border-bottom: 3px solid #0056b3;
+        }
+
+        /* --- DARK THEME MAIN CONTENT --- */
+        main {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        /* --- HERO BANNER --- */
+        .achievements-hero {
+            background: linear-gradient(135deg, #0a0a0a 0%, #0d1f3c 50%, #0a0a0a 100%);
+            padding: 100px 10% 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .achievements-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, rgba(0, 86, 179, 0.15) 0%, transparent 60%);
+            animation: pulse-bg 6s ease-in-out infinite;
+        }
+        @keyframes pulse-bg {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+        .achievements-hero h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .achievements-hero h1 span {
+            color: #4da8da;
+        }
+        .hero-tagline {
+            font-size: 1.25rem;
+            color: #aaaaaa;
+            max-width: 750px;
+            margin: 0 auto 40px;
+            position: relative;
+            z-index: 1;
+        }
+        .trophy-row {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+            margin-top: 20px;
+        }
+        .trophy-stat {
+            text-align: center;
+            animation: float-up 0.8s ease both;
+        }
+        .trophy-stat:nth-child(2) { animation-delay: 0.15s; }
+        .trophy-stat:nth-child(3) { animation-delay: 0.30s; }
+        .trophy-stat:nth-child(4) { animation-delay: 0.45s; }
+        @keyframes float-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .trophy-icon {
+            font-size: 2.8rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .trophy-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #4da8da;
+            display: block;
+        }
+        .trophy-label {
+            font-size: 0.88rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- INTRO SECTION --- */
+        .intro-section {
+            background-color: #1a1a1a;
+            padding: 70px 10%;
+            text-align: center;
+        }
+        .intro-section h2 {
+            font-size: 2.4rem;
+            color: #ffffff;
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+        .intro-section h2 .accent {
+            color: #4da8da;
+        }
+        .intro-text {
+            font-size: 1.12rem;
+            max-width: 920px;
+            margin: 0 auto;
+            text-align: justify;
+            color: #cccccc;
+            line-height: 1.85;
+        }
+
+        /* --- CATEGORY SECTIONS --- */
+        .category-section {
+            padding: 80px 8%;
+        }
+        .category-section.bg-dark-1 { background-color: #121212; }
+        .category-section.bg-dark-2 { background-color: #181818; }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 50px;
+        }
+        .category-icon-wrap {
+            width: 62px;
+            height: 62px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+        .icon-blue   { background: rgba(0, 86, 179, 0.2); }
+        .icon-green  { background: rgba(0, 168, 84, 0.2); }
+        .icon-purple { background: rgba(130, 60, 200, 0.2); }
+        .icon-red    { background: rgba(200, 50, 50, 0.2); }
+        .icon-gold   { background: rgba(200, 155, 0, 0.2); }
+
+        .category-title-block h2 {
+            font-size: 2rem;
+            color: #ffffff;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+        .category-title-block p {
+            color: #777;
+            font-size: 0.95rem;
+        }
+
+        /* Achievement Cards Grid */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        .achievement-card {
+            background: #222222;
+            border-radius: 14px;
+            padding: 28px 24px;
+            border-top: 4px solid transparent;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            cursor: default;
+        }
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            border-radius: 14px;
+        }
+        .achievement-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+        }
+        .achievement-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Border & glow colours per category */
+        .card-blue  { border-top-color: #0056b3; }
+        .card-blue::before  { box-shadow: inset 0 0 30px rgba(0, 86, 179, 0.07); }
+        .card-green { border-top-color: #00a854; }
+        .card-green::before { box-shadow: inset 0 0 30px rgba(0, 168, 84, 0.07); }
+        .card-purple{ border-top-color: #8b3fdf; }
+        .card-purple::before{ box-shadow: inset 0 0 30px rgba(130, 60, 200, 0.07); }
+        .card-red   { border-top-color: #e03e3e; }
+        .card-red::before   { box-shadow: inset 0 0 30px rgba(200, 50, 50, 0.07); }
+        .card-gold  { border-top-color: #c89b00; }
+        .card-gold::before  { box-shadow: inset 0 0 30px rgba(200, 155, 0, 0.07); }
+
+        .card-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+        .badge-blue   { background: rgba(0, 86, 179, 0.18); color: #4da8da; }
+        .badge-green  { background: rgba(0, 168, 84, 0.18); color: #4cd996; }
+        .badge-purple { background: rgba(130, 60, 200, 0.18); color: #b07aff; }
+        .badge-red    { background: rgba(200, 50, 50, 0.18); color: #ff7a7a; }
+        .badge-gold   { background: rgba(200, 155, 0, 0.18); color: #ffd166; }
+
+        .card-medal {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .achievement-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .achievement-card p {
+            font-size: 0.93rem;
+            color: #aaaaaa;
+            line-height: 1.7;
+        }
+
+        /* --- COMMUNITY SECTION --- */
+        .community-section {
+            background: linear-gradient(135deg, #0d1f3c 0%, #121212 100%);
+            padding: 80px 10%;
+            text-align: center;
+        }
+        .community-section h2 {
+            font-size: 2.3rem;
+            color: #ffffff;
+            font-weight: 800;
+            margin-bottom: 18px;
+        }
+        .community-section p {
+            font-size: 1.08rem;
+            color: #aaa;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            line-height: 1.8;
+        }
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .activity-pill {
+            background: #1e1e1e;
+            border: 1px solid #2e2e2e;
+            border-radius: 14px;
+            padding: 22px 18px;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .activity-pill:hover {
+            transform: translateY(-5px);
+            border-color: #4da8da;
+        }
+        .activity-pill span.act-icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .activity-pill p {
+            font-size: 0.95rem;
+            color: #cccccc;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* --- CTA BUTTON --- */
+        .btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 35px;
+            background-color: #0056b3;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            transition: transform 0.3s, background-color 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 86, 179, 0.3);
+        }
+        .btn:hover {
+            background-color: #004494;
+            transform: translateY(-3px);
+        }
+
+        /* --- SAME FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Scroll-reveal fade-in */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================
+           COMPETITION HISTORY SECTION
+        ============================================ */
+        .history-section {
+            background-color: #0e0e0e;
+            padding: 80px 8%;
+        }
+        .history-section .section-label {
+            display: inline-block;
+            background: rgba(0, 86, 179, 0.15);
+            color: #4da8da;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 30px;
+            margin-bottom: 14px;
+        }
+        .history-section h2 {
+            font-size: 2.2rem;
+            color: #ffffff;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        .history-section .sub-desc {
+            color: #777;
+            font-size: 0.95rem;
+            margin-bottom: 40px;
+        }
+        .history-table-wrap {
+            overflow-x: auto;
+            border-radius: 14px;
+            border: 1px solid #2a2a2a;
+        }
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+        .history-table thead tr {
+            background: #1a2540;
+        }
+        .history-table thead th {
+            padding: 16px 20px;
+            color: #4da8da;
+            font-weight: 700;
+            text-align: left;
+            text-transform: uppercase;
+            font-size: 0.82rem;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+        .history-table tbody tr {
+            border-bottom: 1px solid #1e1e1e;
+            transition: background 0.25s;
+        }
+        .history-table tbody tr:last-child {
+            border-bottom: none;
+        }
+        .history-table tbody tr:nth-child(odd) {
+            background: #161616;
+        }
+        .history-table tbody tr:nth-child(even) {
+            background: #121212;
+        }
+        .history-table tbody tr:hover {
+            background: #1c2a40;
+        }
+        .history-table td {
+            padding: 15px 20px;
+            color: #cccccc;
+            vertical-align: middle;
+        }
+        .history-table td:first-child {
+            color: #4da8da;
+            font-weight: 700;
+            font-size: 1rem;
+            white-space: nowrap;
+        }
+        .result-chip {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .chip-gold    { background: rgba(200,155,0,0.18); color: #ffd166; }
+        .chip-silver  { background: rgba(160,160,160,0.18); color: #c0c0c0; }
+        .chip-blue    { background: rgba(0,86,179,0.18); color: #4da8da; }
+        .chip-green   { background: rgba(0,168,84,0.18); color: #4cd996; }
+        .chip-red     { background: rgba(200,50,50,0.18); color: #ff7a7a; }
+        .chip-purple  { background: rgba(130,60,200,0.18); color: #b07aff; }
+
+        /* ============================================
+           AWARD GALLERY SECTION
+        ============================================ */
+        .gallery-section {
+            background-color: #111111;
+            padding: 80px 8%;
+        }
+        .gallery-section .section-label {
+            display: inline-block;
+            background: rgba(200,155,0,0.12);
+            color: #ffd166;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 30px;
+            margin-bottom: 14px;
+        }
+        .gallery-section h2 {
+            font-size: 2.2rem;
+            color: #ffffff;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        .gallery-section .sub-desc {
+            color: #777;
+            font-size: 0.95rem;
+            margin-bottom: 40px;
+        }
+        .award-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+        }
+        .award-tile {
+            background: #1a1a1a;
+            border-radius: 16px;
+            padding: 30px 20px 24px;
+            text-align: center;
+            border: 1px solid #242424;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.35s, box-shadow 0.35s;
+        }
+        .award-tile::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
+            transition: opacity 0.3s;
+            opacity: 0;
+        }
+        .award-tile:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 45px rgba(0,0,0,0.55);
+        }
+        .award-tile:hover::after { opacity: 1; }
+
+        .tile-gold::after    { background: linear-gradient(90deg, #c89b00, #ffd166); }
+        .tile-silver::after  { background: linear-gradient(90deg, #777, #c0c0c0); }
+        .tile-blue::after    { background: linear-gradient(90deg, #0056b3, #4da8da); }
+        .tile-green::after   { background: linear-gradient(90deg, #00a854, #4cd996); }
+        .tile-purple::after  { background: linear-gradient(90deg, #8b3fdf, #b07aff); }
+
+        .award-tile .aw-icon {
+            font-size: 3rem;
+            margin-bottom: 14px;
+            display: block;
+            filter: drop-shadow(0 0 12px rgba(255,209,102,0.3));
+        }
+        .award-tile h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        .award-tile p {
+            font-size: 0.82rem;
+            color: #888;
+            line-height: 1.6;
+        }
+        .award-year {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 0.78rem;
+            color: #555;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ============================================
+           CERTIFICATIONS SECTION
+        ============================================ */
+        .cert-section {
+            background-color: #0e0e0e;
+            padding: 80px 8%;
+        }
+        .cert-section .section-label {
+            display: inline-block;
+            background: rgba(0,168,84,0.12);
+            color: #4cd996;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 30px;
+            margin-bottom: 14px;
+        }
+        .cert-section h2 {
+            font-size: 2.2rem;
+            color: #ffffff;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        .cert-section .sub-desc {
+            color: #777;
+            font-size: 0.95rem;
+            margin-bottom: 40px;
+        }
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 22px;
+        }
+        .cert-card {
+            background: #191919;
+            border-radius: 14px;
+            padding: 26px 24px;
+            border-left: 4px solid #4cd996;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .cert-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 35px rgba(0,168,84,0.1);
+        }
+        .cert-card-top {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .cert-logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .cert-logo.cl-blue   { background: rgba(0,86,179,0.2); }
+        .cert-logo.cl-green  { background: rgba(0,168,84,0.2); }
+        .cert-logo.cl-gold   { background: rgba(200,155,0,0.2); }
+        .cert-logo.cl-purple { background: rgba(130,60,200,0.2); }
+        .cert-logo.cl-red    { background: rgba(200,50,50,0.2); }
+        .cert-logo.cl-teal   { background: rgba(0,180,180,0.2); }
+
+        .cert-info h3 {
+            font-size: 1rem;
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+        .cert-info span {
+            font-size: 0.82rem;
+            color: #666;
+        }
+        .cert-desc {
+            font-size: 0.88rem;
+            color: #999;
+            line-height: 1.6;
+        }
+        .cert-bar-wrap {
+            background: #252525;
+            border-radius: 30px;
+            height: 6px;
+            overflow: hidden;
+        }
+        .cert-bar {
+            height: 100%;
+            border-radius: 30px;
+            background: linear-gradient(90deg, #00a854, #4cd996);
+            animation: bar-grow 1.2s ease both;
+        }
+        @keyframes bar-grow {
+            from { width: 0; }
+        }
+        .cert-bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.78rem;
+            color: #555;
+            margin-top: 4px;
+        }
+
+        /* ============================================
+           EARNS CREATIVITY MARKS SECTION
+        ============================================ */
+        .creativity-section {
+            background: linear-gradient(160deg, #0f1a0a 0%, #0a0a14 50%, #0f0a1a 100%);
+            padding: 80px 8%;
+            position: relative;
+            overflow: hidden;
+        }
+        .creativity-section::before {
+            content: '';
+            position: absolute;
+            top: -100px; right: -100px;
+            width: 400px; height: 400px;
+            background: radial-gradient(ellipse, rgba(138,63,223,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .creativity-section .section-label {
+            display: inline-block;
+            background: rgba(130,60,200,0.15);
+            color: #b07aff;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 30px;
+            margin-bottom: 14px;
+            position: relative;
+            z-index: 1;
+        }
+        .creativity-section h2 {
+            font-size: 2.2rem;
+            color: #ffffff;
+            font-weight: 800;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        .creativity-section .sub-desc {
+            color: #777;
+            font-size: 0.95rem;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        .creativity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 22px;
+            position: relative;
+            z-index: 1;
+        }
+        .creativity-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 28px 24px;
+            transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s;
+            backdrop-filter: blur(6px);
+        }
+        .creativity-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border-color: rgba(176,122,255,0.25);
+        }
+        .creativity-card .cr-icon {
+            font-size: 2.4rem;
+            margin-bottom: 14px;
+            display: block;
+        }
+        .creativity-card h3 {
+            font-size: 1.05rem;
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .creativity-card p {
+            font-size: 0.88rem;
+            color: #888;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+        .star-rating {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+        .star {
+            font-size: 1rem;
+            color: #333;
+        }
+        .star.lit {
+            color: #ffd166;
+            text-shadow: 0 0 8px rgba(255,209,102,0.5);
+        }
+        .star-label {
+            margin-left: 8px;
+            font-size: 0.8rem;
+            color: #666;
+            font-weight: 600;
+        }
+        .creativity-score-bar {
+            margin-top: 14px;
+        }
+        .score-track {
+            background: #1e1e1e;
+            border-radius: 30px;
+            height: 8px;
+            overflow: hidden;
+            margin-bottom: 6px;
+        }
+        .score-fill {
+            height: 100%;
+            border-radius: 30px;
+            background: linear-gradient(90deg, #8b3fdf, #b07aff);
+            animation: bar-grow 1.4s ease both;
+        }
+        .score-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.78rem;
+            color: #555;
+        }
+    </style>
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+
+    <!-- ===== SAME HEADER & NAVBAR ===== -->
+    <header>
+        <img src="puclogo.png" alt="PUC Logo" class="logo-left">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="wings.html">Wings</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="join.html">Join Us</a></li>
+                <li><a href="achievements.html" class="active">Achievements</a></li>
+            </ul>
+        </nav>
+        <img src="pucclublogo.png" alt="PUCC Logo" class="logo-right">
+    </header>
+
+    <main>
+
+        <!-- ===== HERO ===== -->
+        <section class="achievements-hero">
+            <h1>Our <span>Achievements</span></h1>
+            <p class="hero-tagline">
+                A decade of relentless excellence in competitive programming, global hackathons,
+                women in tech, and cybersecurity — the PUCC legacy speaks for itself.
+            </p>
+            <div class="trophy-row">
+                <div class="trophy-stat">
+                    <span class="trophy-icon">🏆</span>
+                    <span class="trophy-number">10+</span>
+                    <span class="trophy-label">Championships</span>
+                </div>
+                <div class="trophy-stat">
+                    <span class="trophy-icon">🌍</span>
+                    <span class="trophy-number">ICPC</span>
+                    <span class="trophy-label">Asia Qualified</span>
+                </div>
+                <div class="trophy-stat">
+                    <span class="trophy-icon">🚀</span>
+                    <span class="trophy-number">NASA</span>
+                    <span class="trophy-label">Space Apps Champs</span>
+                </div>
+                <div class="trophy-stat">
+                    <span class="trophy-icon">🛡️</span>
+                    <span class="trophy-number">CTF</span>
+                    <span class="trophy-label">Cyber Ranked</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== INTRO ===== -->
+        <section class="intro-section">
+            <h2>Highly <span class="accent">Decorated</span> & Globally Recognised</h2>
+            <p class="intro-text">
+                The Premier University Computer Club (PUCC), operating under the Department of
+                Computer Science &amp; Engineering (CSE) in Chattogram, is highly decorated for
+                its accomplishments in competitive programming, hackathons, and tech innovation.
+                From qualifying for the world's most prestigious programming contests to winning
+                international space-tech challenges, PUCC continues to set new benchmarks of
+                excellence for student organisations across Bangladesh.
+            </p>
+        </section>
+
+        <!-- ===== COMPETITIVE PROGRAMMING ===== -->
+        <section class="category-section bg-dark-1 fade-in" id="competitive-programming">
+            <div class="category-header">
+                <div class="category-icon-wrap icon-blue">💻</div>
+                <div class="category-title-block">
+                    <h2>Competitive Programming</h2>
+                    <p>National &amp; International Contest Victories</p>
+                </div>
+            </div>
+            <div class="achievements-grid">
+                <div class="achievement-card card-blue">
+                    <span class="card-badge badge-blue">ICPC</span>
+                    <span class="card-medal">🌏</span>
+                    <h3>ICPC Asia West Continent Championship</h3>
+                    <p>Qualified and competed at the ICPC Asia West Continent Championship — one of the most elite competitive programming stages in the world.</p>
+                </div>
+                <div class="achievement-card card-blue">
+                    <span class="card-badge badge-blue">ICPC</span>
+                    <span class="card-medal">🌐</span>
+                    <h3>ICPC Asia Dhaka Regional</h3>
+                    <p>Successfully qualified for and competed at the prestigious ICPC Asia Dhaka Regional Contest, representing Premier University on a national stage.</p>
+                </div>
+                <div class="achievement-card card-blue">
+                    <span class="card-badge badge-blue">Champions</span>
+                    <span class="card-medal">🥇</span>
+                    <h3>14th Inter University Programming Contest</h3>
+                    <p>Secured the Championship title at the 14th Inter University Programming Contest, outperforming top university teams across Bangladesh.</p>
+                </div>
+                <div class="achievement-card card-blue">
+                    <span class="card-badge badge-blue">Champions</span>
+                    <span class="card-medal">🏅</span>
+                    <h3>SUST Techfest Programming</h3>
+                    <p>Claimed the Championship title at the SUST Techfest Programming Contest, demonstrating consistent excellence in algorithmic problem-solving.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HACKATHONS ===== -->
+        <section class="category-section bg-dark-2 fade-in" id="hackathons">
+            <div class="category-header">
+                <div class="category-icon-wrap icon-green">🚀</div>
+                <div class="category-title-block">
+                    <h2>National &amp; Global Hackathons</h2>
+                    <p>Championship &amp; Runner-up Titles Worldwide</p>
+                </div>
+            </div>
+            <div class="achievements-grid">
+                <div class="achievement-card card-green">
+                    <span class="card-badge badge-green">NASA Space Apps</span>
+                    <span class="card-medal">🏆</span>
+                    <h3>NASA Space Apps Challenge — Champions</h3>
+                    <p>Achieved the Championship title at NASA Space Apps Challenge (Chittagong Division) — one of the world's largest hackathons, competing against thousands of global teams.</p>
+                </div>
+                <div class="achievement-card card-green">
+                    <span class="card-badge badge-green">NASA Space Apps</span>
+                    <span class="card-medal">🥈</span>
+                    <h3>NASA Space Apps Challenge — Runner-up</h3>
+                    <p>Secured the Runner-up position at NASA Space Apps Challenge (Chittagong Division), cementing PUCC's reputation as a hub of innovative space-tech solutions.</p>
+                </div>
+                <div class="achievement-card card-green">
+                    <span class="card-badge badge-green">IIT Bombay</span>
+                    <span class="card-medal">🌟</span>
+                    <h3>IIT Techfest Bombay — Zonal Winners</h3>
+                    <p>Became Zonal Winners at the prestigious IIT Techfest Bombay — Asia's largest science and technology festival, competing against elite engineering institutions.</p>
+                </div>
+                <div class="achievement-card card-green">
+                    <span class="card-badge badge-green">IIT Bombay</span>
+                    <span class="card-medal">🥇</span>
+                    <h3>IIT Techfest Bombay — Champions</h3>
+                    <p>Claimed the Champion title at IIT Techfest Bombay, an extraordinary feat representing PUCC and Premier University on an international platform.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== WOMEN IN TECH ===== -->
+        <section class="category-section bg-dark-1 fade-in" id="women-in-tech">
+            <div class="category-header">
+                <div class="category-icon-wrap icon-purple">👩‍💻</div>
+                <div class="category-title-block">
+                    <h2>Women in Tech</h2>
+                    <p>Empowering &amp; Celebrating Women Technologists</p>
+                </div>
+            </div>
+            <div class="achievements-grid">
+                <div class="achievement-card card-purple">
+                    <span class="card-badge badge-purple">National</span>
+                    <span class="card-medal">🥈</span>
+                    <h3>Ada Lovelace National Girls' Programming Contest — 2nd Place</h3>
+                    <p>Secured 2nd place at the Ada Lovelace National Girls' Programming Contest, honouring the legacy of computing pioneer Ada Lovelace while inspiring the next generation of women coders.</p>
+                </div>
+                <div class="achievement-card card-purple">
+                    <span class="card-badge badge-purple">National</span>
+                    <span class="card-medal">🏅</span>
+                    <h3>National Woman Hackathon — Top Finishes</h3>
+                    <p>Achieved top finishes at the National Woman Hackathon, showcasing that PUCC's women members are among the most capable technologists in Bangladesh.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CYBERSECURITY ===== -->
+        <section class="category-section bg-dark-2 fade-in" id="cybersecurity">
+            <div class="category-header">
+                <div class="category-icon-wrap icon-red">🛡️</div>
+                <div class="category-title-block">
+                    <h2>Cybersecurity</h2>
+                    <p>CTF Contests &amp; Cyber Defence Competitions</p>
+                </div>
+            </div>
+            <div class="achievements-grid">
+                <div class="achievement-card card-red">
+                    <span class="card-badge badge-red">BCS CTF</span>
+                    <span class="card-medal">🔐</span>
+                    <h3>24-Hour BCS CTF — Ranked 68th</h3>
+                    <p>Ranked 68th nationally in the intense 24-Hour BCS Capture The Flag (CTF) competition, demonstrating PUCC's growing strength in ethical hacking and cybersecurity domains.</p>
+                </div>
+                <div class="achievement-card card-red">
+                    <span class="card-badge badge-red">Cyber Raid</span>
+                    <span class="card-medal">⚔️</span>
+                    <h3>Multiple Cyber Raid CTF Competitions</h3>
+                    <p>Successfully competed in multiple Cyber Raid CTF events, consistently sharpening skills in network security, cryptography, and digital forensics.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== COMPETITION HISTORY ===== -->
+        <section class="history-section fade-in" id="competition-history">
+            <span class="section-label">📅 Dedicated History</span>
+            <h2>Competition History</h2>
+            <p class="sub-desc">A chronological record of PUCC's participation and results across major contests and events.</p>
+            <div class="history-table-wrap">
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Competition / Event</th>
+                            <th>Category</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2024</td>
+                            <td>ICPC Asia West Continent Championship</td>
+                            <td>Competitive Programming</td>
+                            <td><span class="result-chip chip-blue">Qualified</span></td>
+                        </tr>
+                        <tr>
+                            <td>2024</td>
+                            <td>ICPC Asia Dhaka Regional Contest</td>
+                            <td>Competitive Programming</td>
+                            <td><span class="result-chip chip-blue">Qualified</span></td>
+                        </tr>
+                        <tr>
+                            <td>2023</td>
+                            <td>14th Inter University Programming Contest</td>
+                            <td>Competitive Programming</td>
+                            <td><span class="result-chip chip-gold">🥇 Champion</span></td>
+                        </tr>
+                        <tr>
+                            <td>2023</td>
+                            <td>SUST Techfest Programming Contest</td>
+                            <td>Competitive Programming</td>
+                            <td><span class="result-chip chip-gold">🥇 Champion</span></td>
+                        </tr>
+                        <tr>
+                            <td>2023</td>
+                            <td>NASA Space Apps Challenge — Chittagong Division</td>
+                            <td>Global Hackathon</td>
+                            <td><span class="result-chip chip-gold">🏆 Champion</span></td>
+                        </tr>
+                        <tr>
+                            <td>2022</td>
+                            <td>NASA Space Apps Challenge — Chittagong Division</td>
+                            <td>Global Hackathon</td>
+                            <td><span class="result-chip chip-silver">🥈 Runner-up</span></td>
+                        </tr>
+                        <tr>
+                            <td>2022</td>
+                            <td>IIT Techfest Bombay</td>
+                            <td>International Hackathon</td>
+                            <td><span class="result-chip chip-gold">🥇 Champion</span></td>
+                        </tr>
+                        <tr>
+                            <td>2022</td>
+                            <td>IIT Techfest Bombay — Zonal Round</td>
+                            <td>International Hackathon</td>
+                            <td><span class="result-chip chip-green">Zonal Winner</span></td>
+                        </tr>
+                        <tr>
+                            <td>2022</td>
+                            <td>Ada Lovelace National Girls' Programming Contest</td>
+                            <td>Women in Tech</td>
+                            <td><span class="result-chip chip-silver">🥈 2nd Place</span></td>
+                        </tr>
+                        <tr>
+                            <td>2022</td>
+                            <td>National Woman Hackathon</td>
+                            <td>Women in Tech</td>
+                            <td><span class="result-chip chip-green">Top Finish</span></td>
+                        </tr>
+                        <tr>
+                            <td>2021</td>
+                            <td>24-Hour BCS Capture The Flag (CTF)</td>
+                            <td>Cybersecurity</td>
+                            <td><span class="result-chip chip-red">Rank 68th</span></td>
+                        </tr>
+                        <tr>
+                            <td>2021</td>
+                            <td>Cyber Raid CTF Competitions (Multiple)</td>
+                            <td>Cybersecurity</td>
+                            <td><span class="result-chip chip-red">Competed</span></td>
+                        </tr>
+                        <tr>
+                            <td>2021</td>
+                            <td>PUCC Tech Fest — Mega Event</td>
+                            <td>Community</td>
+                            <td><span class="result-chip chip-purple">Hosted</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ===== AWARD GALLERY ===== -->
+        <section class="gallery-section fade-in" id="award-gallery">
+            <span class="section-label">🏅 Award Gallery</span>
+            <h2>Award Gallery</h2>
+            <p class="sub-desc">A showcase of trophies, crests, and recognition earned by PUCC across the years.</p>
+            <div class="award-gallery">
+                <div class="award-tile tile-gold">
+                    <span class="aw-icon">🏆</span>
+                    <h3>ICPC Continental Trophy</h3>
+                    <p>Asia West Continent Championship participation trophy awarded to qualifying teams.</p>
+                    <span class="award-year">2024</span>
+                </div>
+                <div class="award-tile tile-gold">
+                    <span class="aw-icon">🥇</span>
+                    <h3>Inter-University Championship Crest</h3>
+                    <p>Champion crest from the 14th Inter University Programming Contest.</p>
+                    <span class="award-year">2023</span>
+                </div>
+                <div class="award-tile tile-blue">
+                    <span class="aw-icon">🚀</span>
+                    <h3>NASA Space Apps Shield</h3>
+                    <p>Champions' recognition shield from NASA Space Apps Challenge, Chittagong Division.</p>
+                    <span class="award-year">2023</span>
+                </div>
+                <div class="award-tile tile-green">
+                    <span class="aw-icon">🌟</span>
+                    <h3>IIT Techfest Gold Plaque</h3>
+                    <p>Gold plaque awarded to PUCC Champions at IIT Bombay's prestigious Techfest.</p>
+                    <span class="award-year">2022</span>
+                </div>
+                <div class="award-tile tile-purple">
+                    <span class="aw-icon">👩‍💻</span>
+                    <h3>Ada Lovelace Recognition Award</h3>
+                    <p>2nd Place recognition from the Ada Lovelace National Girls' Programming Contest.</p>
+                    <span class="award-year">2022</span>
+                </div>
+                <div class="award-tile tile-silver">
+                    <span class="aw-icon">🛡️</span>
+                    <h3>BCS CTF Cyber Shield</h3>
+                    <p>Ranked participation shield from the 24-Hour BCS Capture The Flag competition.</p>
+                    <span class="award-year">2021</span>
+                </div>
+                <div class="award-tile tile-gold">
+                    <span class="aw-icon">🎤</span>
+                    <h3>PUCC Tech Fest Organiser Award</h3>
+                    <p>Recognition for successfully hosting PUCC's flagship mega tech-event.</p>
+                    <span class="award-year">2021</span>
+                </div>
+                <div class="award-tile tile-blue">
+                    <span class="aw-icon">🏅</span>
+                    <h3>SUST Techfest Winner Trophy</h3>
+                    <p>Championship trophy from the SUST Techfest Programming Contest.</p>
+                    <span class="award-year">2023</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CERTIFICATIONS ===== -->
+        <section class="cert-section fade-in" id="certifications">
+            <span class="section-label">📜 Certifications</span>
+            <h2>Certifications</h2>
+            <p class="sub-desc">PUCC members are actively upskilling through globally recognized certification programmes.</p>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <div class="cert-card-top">
+                        <div class="cert-logo cl-blue">☁️</div>
+                        <div class="cert-info">
+                            <h3>AWS Cloud Practitioner</h3>
+                            <span>Amazon Web Services</span>
+                        </div>
+                    </div>
+                    <p class="cert-desc">Members trained in cloud fundamentals, compute, storage, and AWS core services — preparing for industry cloud roles.</p>
+                    <div class="cert-bar-wrap"><div class="cert-bar" style="width:85%"></div></div>
+                    <div class="cert-bar-label"><span>Members Certified</span><span>85%</span></div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-card-top">
+                        <div class="cert-logo cl-teal">🔒</div>
+                        <div class="cert-info">
+                            <h3>Certified Ethical Hacker (CEH)</h3>
+                            <span>EC-Council</span>
+                        </div>
+                    </div>
+                    <p class="cert-desc">Cybersecurity wing members certified in ethical hacking, penetration testing, and vulnerability assessment techniques.</p>
+                    <div class="cert-bar-wrap"><div class="cert-bar" style="width:60%"></div></div>
+                    <div class="cert-bar-label"><span>Members Certified</span><span>60%</span></div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-card-top">
+                        <div class="cert-logo cl-gold">🤖</div>
+                        <div class="cert-info">
+                            <h3>TensorFlow Developer Certificate</h3>
+                            <span>Google</span>
+                        </div>
+                    </div>
+                    <p class="cert-desc">Deep Neural Research wing members certified in building ML models with TensorFlow for real-world AI applications.</p>
+                    <div class="cert-bar-wrap"><div class="cert-bar" style="width:70%"></div></div>
+                    <div class="cert-bar-label"><span>Members Certified</span><span>70%</span></div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-card-top">
+                        <div class="cert-logo cl-purple">🌐</div>
+                        <div class="cert-info">
+                            <h3>Meta Frontend Developer Certificate</h3>
+                            <span>Meta / Coursera</span>
+                        </div>
+                    </div>
+                    <p class="cert-desc">Software Engineering wing members certified in React, UI/UX, and modern frontend development frameworks.</p>
+                    <div class="cert-bar-wrap"><div class="cert-bar" style="width:78%"></div></div>
+                    <div class="cert-bar-label"><span>Members Certified</span><span>78%</span></div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-card-top">
+                        <div class="cert-logo cl-green">📊</div>
+                        <div class="cert-info">
+                            <h3>Google Data Analytics Certificate</h3>
+                            <span>Google / Coursera</span>
+                        </div>
+                    </div>
+                    <p class="cert-desc">Members skilled in data cleaning, analysis, visualisation, and storytelling using SQL, R, and Tableau.</p>
+                    <div class="cert-bar-wrap"><div class="cert-bar" style="width:65%"></div></div>
+                    <div class="cert-bar-label"><span>Members Certified</span><span>65%</span></div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-card-top">
+                        <div class="cert-logo cl-red">🐧</div>
+                        <div class="cert-info">
+                            <h3>Linux Professional Institute (LPIC-1)</h3>
+                            <span>LPI</span>
+                        </div>
+                    </div>
+                    <p class="cert-desc">Linux-Based Networking wing members certified in Linux system administration, networking, and open-source tools.</p>
+                    <div class="cert-bar-wrap"><div class="cert-bar" style="width:72%"></div></div>
+                    <div class="cert-bar-label"><span>Members Certified</span><span>72%</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== EARNS CREATIVITY MARKS ===== -->
+        <section class="creativity-section fade-in" id="creativity-marks">
+            <span class="section-label">✨ Earns Creativity Marks</span>
+            <h2>Earns Creativity Marks</h2>
+            <p class="sub-desc">Innovation scores and creative excellence recognised across PUCC's wings and competitions.</p>
+            <div class="creativity-grid">
+                <div class="creativity-card">
+                    <span class="cr-icon">🎨</span>
+                    <h3>UI/UX Design Excellence</h3>
+                    <p>PUCC members have consistently delivered award-winning interfaces at national UI/UX challenges, combining aesthetics with user-centric design thinking.</p>
+                    <div class="star-rating">
+                        <span class="star lit">★</span><span class="star lit">★</span><span class="star lit">★</span><span class="star lit">★</span><span class="star lit">★</span>
+                        <span class="star-label">5.0 / 5.0</span>
+                    </div>
+                    <div class="creativity-score-bar">
+                        <div class="score-track"><div class="score-fill" style="width:97%"></div></div>
+                        <div class="score-meta"><span>Creativity Index</span><span>97 / 100</span></div>
+                    </div>
+                </div>
+                <div class="creativity-card">
+                    <span class="cr-icon">🚀</span>
+                    <h3>Space-Tech Innovation (NASA)</h3>
+                    <p>The club's NASA Space Apps championship-winning project was praised for its original approach to real-world space data, scoring top marks in innovation criteria.</p>
+                    <div class="star-rating">
+                        <span class="star lit">★</span><span class="star lit">★</span><span class="star lit">★</span><span class="star lit">★</span><span class="star lit">★</span>
+                        <span class="star-label">5.0 / 5.0</span>
+                    </div>
+                    <div class="creativity-score-bar">
+                        <div class="score-track"><div class="score-fill" style="width:100%"></div></div>
+                        <div class="score-meta"><span>Creativity Index</span><span>100 / 100</span></div>
+                    </div>
+                </div>
+                <div class="creativity-card">
+                    <span class="cr-icon">🤖</span>
+                    <h3>AI & Machine Learning Projects</h3>
+                    <p>Deep Neural Research wing projects demonstrated novel applications of ML models in healthcare, agriculture, and smart city domains — earning high creativity scores at datathons.</p>
+                    <div class="star-rating">
+                        <span class="star lit">★</span><span class="star lit">★</span><span class="star lit">★</span><span class="star lit">★</span><span class="star">★</span>
+                        <span class="star-label">4.5 / 5.0</span>
+                    </div>
+                    <div class="creativity-score-bar">
+                        <div class="score-track"><div class="score-fill" style="width:90%"></div></div>
+                        <div class="score-meta"><span>Creativity Index</span><span>90 / 100</span></div>
+                    </div>
+                </div>
+                <div class="creativity-card">
+                    <span class="cr-icon">🔐</span>
+                    <h3>Cybersecurity CTF Problem Design</h3>
+                    <p>PUCC's cybersecurity team not only competed in CTFs but also designed creative challenge sets for internal Cyber Raid events, earning recognition for problem originality.</p>
+                    <div class="star-rating">
+                        <span class="star lit">★</span><span class="star lit">★</span><span class="star lit">★</span><span class="star lit">★</span><span class="star">★</span>
+                        <span class="star-label">4.0 / 5.0</span>
+                    </div>
+                    <div class="creativity-score-bar">
+                        <div class="score-track"><div class="score-fill" style="width:82%"></div></div>
+                        <div class="score-meta"><span>Creativity Index</span><span>82 / 100</span></div>
+                    </div>
+                </div>
+                <div class="creativity-card">
+                    <span class="cr-icon">📐</span>
+                    <h3>Algorithmic Problem Crafting</h3>
+                    <p>PUCC competitive programmers authored original problem sets for inter-university contests, judged for mathematical elegance and creative algorithmic thinking.</p>
+                    <div class="star-rating">
+                        <span class="star lit">★</span><span class="star lit">★</span><span class="star lit">★</span><span class="star lit">★</span><span class="star lit">★</span>
+                        <span class="star-label">4.8 / 5.0</span>
+                    </div>
+                    <div class="creativity-score-bar">
+                        <div class="score-track"><div class="score-fill" style="width:95%"></div></div>
+                        <div class="score-meta"><span>Creativity Index</span><span>95 / 100</span></div>
+                    </div>
+                </div>
+                <div class="creativity-card">
+                    <span class="cr-icon">🎤</span>
+                    <h3>PUCC Tech Fest Event Design</h3>
+                    <p>The annual PUCC Tech Fest is conceptualised entirely by students — from thematic branding to competition formats — recognised as one of the most creative student-run tech events in Chattogram.</p>
+                    <div class="star-rating">
+                        <span class="star lit">★</span><span class="star lit">★</span><span class="star lit">★</span><span class="star lit">★</span><span class="star lit">★</span>
+                        <span class="star-label">5.0 / 5.0</span>
+                    </div>
+                    <div class="creativity-score-bar">
+                        <div class="score-track"><div class="score-fill" style="width:98%"></div></div>
+                        <div class="score-meta"><span>Creativity Index</span><span>98 / 100</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== COMMUNITY & EVENTS ===== -->
+        <section class="community-section fade-in" id="community">
+            <h2>Beyond the Podium — Community &amp; Innovation</h2>
+            <p>
+                The club continually hosts coding boot camps, datathons, UI/UX challenges, and
+                mega-events like the PUCC Tech Fest — building a culture where every member
+                can learn, compete, and grow together. Our events attract participants from
+                universities across Bangladesh, making PUCC a true epicentre of tech culture.
+            </p>
+            <div class="activities-grid">
+                <div class="activity-pill">
+                    <span class="act-icon">⌨️</span>
+                    <p>Coding Boot Camps</p>
+                </div>
+                <div class="activity-pill">
+                    <span class="act-icon">📊</span>
+                    <p>Datathons</p>
+                </div>
+                <div class="activity-pill">
+                    <span class="act-icon">🎨</span>
+                    <p>UI/UX Challenges</p>
+                </div>
+                <div class="activity-pill">
+                    <span class="act-icon">🎤</span>
+                    <p>PUCC Tech Fest</p>
+                </div>
+                <div class="activity-pill">
+                    <span class="act-icon">🔬</span>
+                    <p>Research Seminars</p>
+                </div>
+            </div>
+            <a href="join.html" class="btn">Be Part of the Legacy</a>
+        </section>
+
+    </main>
+
+    <!-- ===== SAME FOOTER ===== -->
+    <footer>
+        <p>made by Levi squad</p>
+    </footer>
+
+    <script>
+        // Scroll-reveal animation
+        const fadeEls = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        fadeEls.forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

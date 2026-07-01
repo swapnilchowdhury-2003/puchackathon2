@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUCC - Log In</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0f172a, #0b5cab 55%, #dbeafe);
+            color: #0f172a;
+            padding: 24px;
+        }
+        .card {
+            width: min(100%, 720px);
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 28px;
+            padding: 40px;
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.25);
+            text-align: center;
+        }
+        h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 12px;
+        }
+        p {
+            font-size: 1.05rem;
+            color: #475569;
+            margin-bottom: 28px;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 18px;
+        }
+        .option {
+            display: block;
+            padding: 18px 20px;
+            border-radius: 18px;
+            text-decoration: none;
+            font-weight: 700;
+            color: #ffffff;
+            background: linear-gradient(135deg, #0056b3, #1d4ed8);
+            box-shadow: 0 12px 24px rgba(29, 78, 216, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .option:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 28px rgba(29, 78, 216, 0.3);
+        }
+        .back {
+            display: inline-block;
+            margin-top: 26px;
+            color: #0056b3;
+            text-decoration: none;
+            font-weight: 700;
+        }
+    </style>
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <main class="card">
+        <h1>Log In</h1>
+        <p>Choose the account type you want to continue with.</p>
+        <div class="options">
+            <a class="option" href="recruiter.html">Login as Recruiter</a>
+            <a class="option" href="member.html">Login as Member</a>
+            <a class="option" href="alumni.html">Login as Alumni</a>
+        </div>
+        <a class="back" href="index.html">Back to Home</a>
+    </main>
+</body>
+</html>
